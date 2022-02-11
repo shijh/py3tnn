@@ -24,7 +24,6 @@ jobs:
     - name: Build and install protobuf 3.5 from source
       run: |
         cd third_party/protobuf
-        git checkout tags/v3.5.0
         git submodule update --init --recursive
         ./autogen.sh
         ./configure
