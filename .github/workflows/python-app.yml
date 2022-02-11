@@ -20,7 +20,7 @@ jobs:
         python-version: "3.7"
     - name: Install python3-dev and cmake
       run: |
-        sudo apt install autoconf libtool g++ python3-dev cmake
+        sudo apt install autoconf libtool g++ python3-dev cmake git
     - name: Build and install protobuf 3.5 from source
       run: |
         cd third_party/protobuf
