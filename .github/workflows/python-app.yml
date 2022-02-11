@@ -6,13 +6,11 @@ name: Python application
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@v2
@@ -20,6 +18,21 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: "3.7"
+    - name: Install python3-dev and cmake
+      run: |
+        sudo apt install autoconf libtool g++ python3-dev cmake
+    - name: Build and install protobuf 3.5 from source
+      run: |
+        cd third_party/protobuf
+        git checkout tags/v3.5.0
+        git submodule update --init --recursive
+        ./autogen.sh
+        ./configure
+        make
+        make check
+        sudo make install
+        sudo ldconfig
+        protoc --version
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -33,4 +46,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest -s

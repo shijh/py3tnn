@@ -1,0 +1,6 @@
+[submodule "third_party/TNN"]
+	path = third_party/TNN
+	url = https://github.com/Tencent/TNN.git
+[submodule "third_party/protobuf"]
+	path = third_party/protobuf
+	url = https://github.com/protocolbuffers/protobuf
