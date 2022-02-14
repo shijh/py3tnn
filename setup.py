@@ -1,7 +1,6 @@
 import setuptools
 
 
-
 setuptools.setup(
     name='pytnn',
     version='2022.02.dev1',
